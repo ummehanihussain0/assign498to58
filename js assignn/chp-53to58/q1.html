@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(156, 203, 209, 0.651);
+        }
+
+        .modal-content {
+            margin: 10% auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-close {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="modal" class="modal modal-close">
+        <img id="modalImage" class="modal-content" alt="Modal Image">
+    </div>
+<h1> SHOES LIFE </h1>
+    <div id="imageContainer">
+        <img src="./img/image1.jpg" style="height: 360px;">
+        <img src="./img/image2.jpg" style="height: 360px;">
+        <img src="./img/image3.jpg" style="height: 360px;">
+    </div>
+    <script>
+        var modal = document.getElementById('modal');
+        var modalImage = document.getElementById('modalImage');
+
+        function onImageClick(imagePath) {
+            modal.classList.add('modal-open');
+            modal.classList.remove('modal-close');
+            modal.style.display = 'block';
+            modalImage.src = imagePath;
+        }
+
+        function onClosedImageModal() {
+            modal.classList.add('modal-close');
+            modal.classList.remove('modal-open');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 550);
+        }
+
+        var imageContainer = document.getElementById('imageContainer');
+        var images = imageContainer.getElementsByTagName('img');
+
+        for (var i = 0; i < images.length; i++) {
+            images[i].onclick = function () {
+                onImageClick(this.src);
+            };
+        }
+
+        modal.onclick = onClosedImageModal;
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document
+  </title>
+  <style>
+    .item {
+      margin-bottom: 20px;
+      border: 1px solid #cea1a1;
+      padding: 10px;
+    }
+
+    .item .short-details {
+      display: block;
+      overflow: hidden;
+      max-height: 80px;
+    }
+
+    .item .full-details {
+      display: none;
+    }
+
+    .item .read-more {
+      display: block;
+      margin-top: 10px;
+      text-decoration: underline;
+      color: rgb(220, 223, 202);
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    function showFullDetails(itemId) {
+      var item = document.getElementById(itemId);
+      var shortDetails = item.querySelector(".short-details");
+      var fullDetails = item.querySelector(".full-details");
+      var readMore = item.querySelector(".read-more");
+
+      shortDetails.style.display = "none";
+      fullDetails.style.display = "block";
+      readMore.style.display = "none";
+    }
+  </script>
+</head>
+<body>
+  <div class="item" id="item1">
+    <h3>Item I </h3>
+    <div class="short-details">
+      <p>This is a short description of Item I.</p>
+    </div>
+    <div class="full-details">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias corrupti perferendis nulla officia cum debitis, recusandae enim tenetur eligendi aliquam. Vero odit nobis voluptates nostrum, optio illum explicabo dolor aliquam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum quae nostrum minus obcaecati sequi odio, provident dignissimos 
+        reiciendis autem! Ipsam soluta ab voluptatum autem temporibus distinctio, facilis fuga omnis ullam?</p>
+    </div>
+    <div class="read-more" onclick="showFullDetails('item1')">Read more</div>
+  </div>
+
+  <div class="item" id="item2">
+    <h3>Item II</h3>
+    <div class="short-details">
+      <p>This is a short description of Item II.</p>
+    </div>
+    <div class="full-details">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum et totam voluptatibus, doloribus ad, quam explicabo incidunt labore adipisci accusantium ab mollitia temporibus a aliquam voluptatum illo autem voluptatem dicta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ea reprehenderit, maiores reiciendis, earum accusantium minima, a quia inventore nulla illum. Harum, minus saepe. Dolorum explicabo id non et consectetur?</p>
+    </div>
+    <div class="read-more" onclick="showFullDetails('item2')">Read more</div>
+  </div>
+</body>
+</html>
+

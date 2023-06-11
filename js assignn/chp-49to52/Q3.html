@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Details</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #574949;
+    }
+
+    .hidden-form {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .hidden-form label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .hidden-form input[type="text"] {
+      width: 200px;
+      padding: 5px;
+    }
+
+    .hidden-form button {
+      margin-top: 10px;
+      padding: 5px 10px;
+    }
+  </style>
+  <script>
+    function addStudent() {
+      var table = document.getElementById("student-table");
+      var firstName = document.getElementById("first-name").value;
+      var lastName = document.getElementById("last-name").value;
+      var age = document.getElementById("age").value;
+
+      var row = table.insertRow(-1);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      
+      cell1.innerHTML = firstName;
+      cell2.innerHTML = lastName;
+      cell3.innerHTML = age;
+      cell4.innerHTML = '<button onclick="editStudent(this)">Edit</button> <button onclick="deleteStudent(this)">Delete</button>';
+      
+      // Reset form values
+      document.getElementById("first-name").value = "";
+      document.getElementById("last-name").value = "";
+      document.getElementById("age").value = "";
+    }
+
+    function deleteStudent(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+
+    function editStudent(button) {
+      var row = button.parentNode.parentNode;
+      var firstName = row.cells[0].innerHTML;
+      var lastName = row.cells[1].innerHTML;
+      var age = row.cells[2].innerHTML;
+
+      var hiddenForm = document.getElementById("hidden-form");
+      hiddenForm.style.display = "block";
+
+      hiddenForm.elements["edit-first-name"].value = firstName;
+      hiddenForm.elements["edit-last-name"].value = lastName;
+      hiddenForm.elements["edit-age"].value = age;
+
+      hiddenForm.onsubmit = function(event) {
+        event.preventDefault();
+        row.cells[0].innerHTML = hiddenForm.elements["edit-first-name"].value;
+        row.cells[1].innerHTML = hiddenForm.elements["edit-last-name"].value;
+        row.cells[2].innerHTML = hiddenForm.elements["edit-age"].value;
+
+        hiddenForm.style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Student List</h1>
+  <form id="student-form" onsubmit="event.preventDefault(); addStudent();">
+    <label for="first-name">First Name:</label>
+    <input type="text" id="first-name" required>
+
+    <label for="last-name">Last Name:</label>
+    <input type="text" id="last-name" required>
+
+    <label for="age">Age:</label>
+    <input type="text" id="age" required>
+
+    <button type="submit">ADD</button>
+  </form>
+
+  <table id="student-table">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </table>
+
+  <form id="hidden-form" class="hidden-form">
+    <label for="edit-first-name">First Name:</label>
+    <input type="text" id="edit-first-name">
+
+    <label for="edit-last-name">Last Name:</label>
+    <input type="text" id="edit-last-name">
+
+    <label for="edit-age">Age:</label>
+    <input type="text" id="edit-age">
+
+    <button type="submit">Save</button>
+  </form>
+</body>
+</html>

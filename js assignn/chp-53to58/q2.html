@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document</title>
+  <style>
+    #zoom-paragraph {
+      font-size: 16px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var fontSize = 16;
+
+      $("#zoom-in").click(function() {
+        fontSize += 10;
+        $("#zoom-paragraph").css("font-size", fontSize + "px");
+      });
+
+      $("#zoom-out").click(function() {
+        fontSize -= 10;
+        $("#zoom-paragraph").css("font-size", fontSize + "px");
+      });
+    });
+  </script>
+</head>
+<body>
+  <p id="zoom-paragraph">Hello!! you can Zoom in and Zoom out this paragraph.</p>
+  <button id="zoom-in">Zoom In (+)</button>
+  <button id="zoom-out">Zoom Out (-)</button>
+</body>
+</html>
